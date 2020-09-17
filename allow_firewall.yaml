@@ -1,0 +1,13 @@
+---
+- name: Configure firewall
+  hosts: web
+  tasks:
+          - name: Allow httpd in firewall
+            firewalld:
+                    service: http
+                    permanent: yes
+                    state: enabled
+                    immediate: yes
+...
+
+ 
