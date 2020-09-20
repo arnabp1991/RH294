@@ -1,0 +1,27 @@
+---
+- name: Instal, Start HTTP and allow in firewall
+  hosts: AWS
+  tasks:
+          - name: Install HTTP Package
+            yum:
+                   name: 
+                        - httpd
+                        - firewalld  
+                   state: present
+          - name: Start and enable http service
+            service:
+                   name: httpd
+                   state: started
+                   enabled: true
+          - name: Start and enable firewall service
+            service:
+                   name: firewalld
+                   state: started
+                   enabled: true
+          - name: Allow in firewall
+            firewalld:
+                    service: http
+                    permanent: true
+                    state: enabled
+                    immediate: yes
+...
